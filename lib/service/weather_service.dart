@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, deprecated_member_use
+
 import 'dart:convert';
 
 import 'package:geocoding/geocoding.dart';
@@ -17,10 +19,10 @@ class WeatherService {
         .get(Uri.parse('$BASE_URL?q=$cityname&appid=$apikey&units=metric'));
 
     if (response.statusCode == 200) {
-      //print(response.body);
+      print(response.body);
       return Weather.fromJson(jsonDecode(response.body));
     } else {
-      //print(response.body);
+      print(response.body);
 
       throw Exception('Failed to load weather data');
     }
@@ -37,9 +39,9 @@ class WeatherService {
 
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
-
-    String? city = placemarks[0].locality;
-
+    print(placemarks[2]);
+    String? city = placemarks[2].locality;
+    print(city);
     return city ?? "";
   }
 }

@@ -12,7 +12,7 @@ class Weatherpage extends StatefulWidget {
 }
 
 class _WeatherpageState extends State<Weatherpage> {
-  final _weatherservice = WeatherService("f489485880c972b2d726c31d45fe26e8");
+  final _weatherservice = WeatherService("22d363f57bcd26b1e5f6edc7189f9af5");
 
   Weather? _weather;
 
@@ -86,16 +86,53 @@ class _WeatherpageState extends State<Weatherpage> {
               ),
             ),
             Lottie.asset(getWeather(_weather?.mainCondition)),
+            Text(_weather?.description ?? "loading",
+                style: GoogleFonts.redHatDisplay(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                    color: Colors.grey.shade700)),
             Padding(
-              padding: const EdgeInsets.only(bottom: 180.0),
-              child: Text(
-                  _weather != null
-                      ? "${_weather!.temperature.round()}°C"
-                      : "loading temperature..",
-                  style: GoogleFonts.redHatDisplay(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30,
-                      color: Colors.grey)),
+              padding: const EdgeInsets.only(bottom: 180),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      Text("Temperature",
+                          style: GoogleFonts.redHatDisplay(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20,
+                              color: Colors.grey)),
+                      Text(
+                          _weather != null
+                              ? "${_weather!.temperature.round()}°C"
+                              : "loading temperature..",
+                          style: GoogleFonts.redHatDisplay(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 20,
+                              color: Colors.grey)),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text("Feels Like",
+                          style: GoogleFonts.redHatDisplay(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20,
+                              color: Colors.grey)),
+                      Text(
+                          _weather != null
+                              ? "${_weather!.feelslike.round()}°C"
+                              : "loading temperature..",
+                          style: GoogleFonts.redHatDisplay(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 20,
+                              color: Colors.grey)),
+                    ],
+                  ),
+                ],
+              ),
             ),
             /*Padding(
               padding: const EdgeInsets.only(bottom: 60.0),
